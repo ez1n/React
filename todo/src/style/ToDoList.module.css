@@ -20,6 +20,11 @@
   cursor: pointer;
 }
 
+.completed {
+  color: gray;
+  text-decoration: line-through;
+}
+
 .deleteButton {
   display: flex;
   align-items: center;
