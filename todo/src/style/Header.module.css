@@ -1,0 +1,26 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.icon {
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: unset;
+  cursor: pointer;
+}
+
+.button {
+  font-size: 1em;
+  font-weight: bold;
+  margin-left: 0.3em;
+  border: none;
+  background-color: unset;
+  cursor: pointer;
+}
