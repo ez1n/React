@@ -1,0 +1,1 @@
+export type ToDoType = {id: number, name: string}
