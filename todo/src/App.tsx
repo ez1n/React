@@ -1,14 +1,15 @@
 import React from 'react';
 import './style/App.css';
 import Header from './components/Header';
-import AddInputForm from './components/AddInputForm';
+import AddForm from './components/AddForm';
+import ToDoList from './components/ToDoList';
 
 function App() {
   return (
     <div className="app">
       <Header />
-      <h1>todo list</h1>
-      <AddInputForm />
+      <ToDoList />
+      <AddForm />
     </div>
   );
 }
