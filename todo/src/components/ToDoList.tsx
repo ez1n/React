@@ -12,22 +12,22 @@ interface propsType {
 
 export default function ToDoList(props: propsType) {
   return (
-    <ol className={styles.main}>
+    <main className={styles.main}>
       {props.list.map((item: ToDoType) => {
           switch (props.mode) {
             case "All":
               return (
-                <ToDoListItem item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
+                <ToDoListItem key={item.id} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
               )
             default:
               return (
                 item.status === props.mode &&
-                <ToDoListItem item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
+                <ToDoListItem key={item.id} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
               )
           }
         }
       )}
-    </ol>
+    </main>
   );
 }
 

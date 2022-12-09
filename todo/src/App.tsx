@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './style/App.css';
 import {StatusType, ToDoType, ModeType} from "./type/ToDoType";
 import Header from './components/Header';
 import AddForm from './components/AddForm';
 import ToDoList from './components/ToDoList';
+import {DarkModeProvider} from "./context/DarkModContext";
 
 function App() {
   const [list, setList] = useState<ToDoType[]>([]);
@@ -26,11 +27,13 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Header changeMode={changeMode}/>
-      <ToDoList mode={mode} list={list} deleteToDo={deleteToDo} checkToDo={checkToDo}/>
-      <AddForm addToDo={addToDo}/>
-    </div>
+    <DarkModeProvider>
+      <div className="app">
+        <Header changeMode={changeMode}/>
+        <ToDoList mode={mode} list={list} deleteToDo={deleteToDo} checkToDo={checkToDo}/>
+        <AddForm addToDo={addToDo}/>
+      </div>
+    </DarkModeProvider>
   );
 }
 
