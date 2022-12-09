@@ -29,12 +29,13 @@ export default function ToDoListItem(props: propsType) {
           className={styles.input}
           type="checkbox"
           name="status"
+          checked={props.item.status === "Completed"}
           id={props.item.id.toString()}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeStatus(e, props.item.id)}/>
         <label
           className={`${styles.input} ${props.item.status === 'Completed' && styles.completed}`}
           htmlFor={props.item.id.toString()}
-          style={{color: darkMode ? theme.dark.font : theme.light.font}}
+          style={{color: props.item.status === 'Completed' ? 'gray' : darkMode ? theme.dark.font : theme.light.font}}
         >
           {props.item.name}
         </label>
