@@ -1,14 +1,14 @@
 export const theme = {
+  main: '#ff8930',
+  button: '#ededed',
   light: {
-    header: '#d5d5d5',
-    background: '#ededed',
-    main: '#ff6f00',
+    header: '#ebebeb',
+    background: '#f4f4f4',
     font: '#0d0e4f'
   },
   dark: {
-    header: '#05062a',
-    background: '#0d0e4f',
-    main: '#ff6f00',
-    font: '#fffbdd'
+    header: '#080a4a',
+    background: 'rgba(5,5,85,0.88)',
+    font: '#e0e0e0'
   }
 }

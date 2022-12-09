@@ -1,7 +1,12 @@
+.footer {
+  padding: 1em;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
 .form {
   position: relative;
   display: flex;
-  margin: 1em;
 }
 
 .input {
@@ -24,6 +29,7 @@
   height: 100%;
   padding: 0 1.5em;
   font-size: 1em;
+  font-weight: bold;
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   cursor: pointer;
