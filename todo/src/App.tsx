@@ -29,7 +29,7 @@ function App() {
   return (
     <DarkModeProvider>
       <div className="app">
-        <Header changeMode={changeMode}/>
+        <Header mode={mode} changeMode={changeMode}/>
         <ToDoList mode={mode} list={list} deleteToDo={deleteToDo} checkToDo={checkToDo}/>
         <AddForm addToDo={addToDo}/>
       </div>

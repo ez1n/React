@@ -6,6 +6,7 @@ import {DarkModeContext} from "../context/DarkModContext";
 import {theme} from "../common/theme";
 
 interface propsType {
+  mode: ModeType,
   changeMode: (mode: ModeType) => void
 }
 
@@ -27,9 +28,33 @@ export default function Header(props: propsType) {
       </button>
 
       <span>
-        <button className={styles.button} onClick={() => changeMode('All')} style={{color: theme.main}}>All</button>
-        <button className={styles.button} onClick={() => changeMode('Active')} style={{color: theme.main}}>Active</button>
-        <button className={styles.button} onClick={() => changeMode('Completed')} style={{color: theme.main}}>Completed</button>
+        <button
+          className={styles.button}
+          onClick={() => changeMode('All')}
+          style={{
+            color: theme.main,
+            textDecoration: props.mode === 'All' ? 'underline' : 'unset'
+          }}>
+          All
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => changeMode('Active')}
+          style={{
+            color: theme.main,
+            textDecoration: props.mode === 'Active' ? 'underline' : 'unset'
+          }}>
+          Active
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => changeMode('Completed')}
+          style={{
+            color: theme.main,
+            textDecoration: props.mode === 'Completed' ? 'underline' : 'unset'
+          }}>
+          Completed
+        </button>
       </span>
     </nav>
   );
