@@ -2,8 +2,10 @@ import React, {useContext, useState} from 'react';
 import styles from '../style/AddForm.module.css';
 import {DarkModeContext} from "../context/DarkModContext";
 import {theme} from "../common/theme";
+import {ToDoType} from "../type/ToDoType";
 
 interface propsType {
+  list: ToDoType[],
   addToDo: (data: string) => void
 }
 
@@ -20,6 +22,14 @@ export default function AddForm(props: propsType) {
   const submitInput = (e: any) => {
     e.preventDefault();
     props.addToDo(input);
+    const todo = localStorage.getItem('todo');
+    if (todo) {
+      const newTodo = JSON.parse(todo).concat({id: Date.now(), name: input, status: 'Active'});
+      localStorage.setItem('todo', JSON.stringify(newTodo));
+    } else {
+      const newTodo = [{id: Date.now(), name: input, status: 'Active'}];
+      localStorage.setItem('todo', JSON.stringify(newTodo));
+    }
     setInput('');
   }
 

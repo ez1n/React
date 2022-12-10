@@ -8,7 +8,7 @@ import {ModeContext} from "../context/ModeContext";
 
 interface propsType {
   list: ToDoType[],
-  deleteToDo: (id: number) => void,
+  deleteToDo: (id: number, index: number) => void,
   checkToDo: (id: number, status: StatusType) => void
 }
 
@@ -18,14 +18,14 @@ export default function ToDoList(props: propsType) {
 
   return (
     <main className={styles.main} style={{backgroundColor: darkMode ? theme.dark.background : theme.light.background}}>
-      {props.list.map((item: ToDoType) => {
+      {props.list.map((item, index) => {
           switch (mode) {
             case "All":
-              return <ToDoListItem key={item.id} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
+              return <ToDoListItem key={item.id} index={index} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
             default:
               return (
                 item.status === mode &&
-                <ToDoListItem key={item.id} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
+                <ToDoListItem key={item.id} index={index} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
               )
           }
         }

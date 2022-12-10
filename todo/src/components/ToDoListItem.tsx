@@ -7,19 +7,30 @@ import {theme} from "../common/theme";
 
 interface propsType {
   item: ToDoType,
-  deleteToDo: (id: number) => void,
+  index: number,
+  deleteToDo: (id: number, index: number) => void,
   checkToDo: (id: number, status: StatusType) => void,
 }
 
 export default function ToDoListItem(props: propsType) {
-  const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
+  const {darkMode,} = useContext(DarkModeContext);
 
-  const deleteToDo = (id: number) => {
-    props.deleteToDo(id);
+  const deleteToDo = () => {
+    props.deleteToDo(props.item.id, props.index);
   }
 
-  const changeStatus = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
-    props.checkToDo(id, e.target.checked ? 'Completed' : 'Active');
+  const changeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const todo = localStorage.getItem('todo');
+    if (todo) {
+      const newTodo = JSON.parse(todo).map((item: ToDoType) => {
+        if (item.id === props.item.id) {
+          return {...item, status: e.target.checked ? 'Completed' : 'Active'}
+        }
+        return item
+      });
+      localStorage.setItem('todo', JSON.stringify(newTodo));
+    }
+    props.checkToDo(props.item.id, e.target.checked ? 'Completed' : 'Active');
   }
 
   return (
@@ -31,7 +42,7 @@ export default function ToDoListItem(props: propsType) {
           name="status"
           checked={props.item.status === "Completed"}
           id={props.item.id.toString()}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeStatus(e, props.item.id)}/>
+          onChange={changeStatus}/>
         <label
           className={`${styles.input} ${props.item.status === 'Completed' && styles.completed}`}
           htmlFor={props.item.id.toString()}
@@ -41,7 +52,8 @@ export default function ToDoListItem(props: propsType) {
         </label>
       </div>
 
-      <button className={styles.deleteButton} onClick={() => deleteToDo(props.item.id)} style={{color: darkMode ? theme.dark.font : theme.light.font}}>
+      <button className={styles.deleteButton} onClick={deleteToDo}
+              style={{color: darkMode ? theme.dark.font : theme.light.font}}>
         <BsFillTrashFill/>
       </button>
     </li>
