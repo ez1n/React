@@ -1,15 +1,13 @@
 import React, {createContext, useState} from "react";
 
-export type darkModeType = {
+interface darkModeType {
   darkMode: boolean,
-  toggleDarkMode: () => void
-};
+  toggleDarkMode: (() => void) | null
+}
 
 const initialDarkMode: darkModeType = {
   darkMode: false,
-  toggleDarkMode: () => {
-    initialDarkMode.darkMode = !initialDarkMode.darkMode
-  }
+  toggleDarkMode: null
 }
 
 export const DarkModeContext = createContext(initialDarkMode);

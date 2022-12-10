@@ -4,21 +4,22 @@ import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
 import {ModeType} from "../type/ToDoType";
 import {DarkModeContext} from "../context/DarkModContext";
 import {theme} from "../common/theme";
+import {ModeContext} from "../context/ModeContext";
 
-interface propsType {
-  mode: ModeType,
-  changeMode: (mode: ModeType) => void
-}
-
-export default function Header(props: propsType) {
+export default function Header() {
   const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
+  const {mode, toggleMode} = useContext(ModeContext);
 
   const changeMode = (mode: ModeType) => {
-    props.changeMode(mode);
+    if (toggleMode) {
+      toggleMode(mode);
+    }
   }
 
   const changeDarkMode = () => {
-    toggleDarkMode();
+    if (toggleDarkMode) {
+      toggleDarkMode();
+    }
   }
 
   return (
@@ -33,7 +34,7 @@ export default function Header(props: propsType) {
           onClick={() => changeMode('All')}
           style={{
             color: theme.main,
-            textDecoration: props.mode === 'All' ? 'underline' : 'unset'
+            textDecoration: mode === 'All' ? 'underline' : 'unset'
           }}>
           All
         </button>
@@ -42,7 +43,7 @@ export default function Header(props: propsType) {
           onClick={() => changeMode('Active')}
           style={{
             color: theme.main,
-            textDecoration: props.mode === 'Active' ? 'underline' : 'unset'
+            textDecoration: mode === 'Active' ? 'underline' : 'unset'
           }}>
           Active
         </button>
@@ -51,7 +52,7 @@ export default function Header(props: propsType) {
           onClick={() => changeMode('Completed')}
           style={{
             color: theme.main,
-            textDecoration: props.mode === 'Completed' ? 'underline' : 'unset'
+            textDecoration: mode === 'Completed' ? 'underline' : 'unset'
           }}>
           Completed
         </button>

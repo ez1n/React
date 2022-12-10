@@ -1,31 +1,30 @@
 import React, {useContext} from 'react';
 import styles from '../style/ToDoList.module.css';
-import {ModeType, StatusType, ToDoType} from "../type/ToDoType";
+import {StatusType, ToDoType} from "../type/ToDoType";
 import ToDoListItem from "./ToDoListItem";
 import {DarkModeContext} from "../context/DarkModContext";
 import {theme} from "../common/theme";
+import {ModeContext} from "../context/ModeContext";
 
 interface propsType {
-  mode: ModeType,
   list: ToDoType[],
   deleteToDo: (id: number) => void,
   checkToDo: (id: number, status: StatusType) => void
 }
 
 export default function ToDoList(props: propsType) {
-  const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
+  const {darkMode,} = useContext(DarkModeContext);
+  const {mode,} = useContext(ModeContext);
 
   return (
     <main className={styles.main} style={{backgroundColor: darkMode ? theme.dark.background : theme.light.background}}>
       {props.list.map((item: ToDoType) => {
-          switch (props.mode) {
+          switch (mode) {
             case "All":
-              return (
-                <ToDoListItem key={item.id} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
-              )
+              return <ToDoListItem key={item.id} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
             default:
               return (
-                item.status === props.mode &&
+                item.status === mode &&
                 <ToDoListItem key={item.id} item={item} deleteToDo={props.deleteToDo} checkToDo={props.checkToDo}/>
               )
           }

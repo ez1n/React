@@ -5,6 +5,7 @@ import Header from './components/Header';
 import AddForm from './components/AddForm';
 import ToDoList from './components/ToDoList';
 import {DarkModeProvider} from "./context/DarkModContext";
+import {ModeProvider} from "./context/ModeContext";
 
 function App() {
   const [list, setList] = useState<ToDoType[]>([]);
@@ -29,8 +30,10 @@ function App() {
   return (
     <DarkModeProvider>
       <div className="app">
-        <Header mode={mode} changeMode={changeMode}/>
-        <ToDoList mode={mode} list={list} deleteToDo={deleteToDo} checkToDo={checkToDo}/>
+        <ModeProvider>
+          <Header/>
+          <ToDoList list={list} deleteToDo={deleteToDo} checkToDo={checkToDo}/>
+        </ModeProvider>
         <AddForm addToDo={addToDo}/>
       </div>
     </DarkModeProvider>
