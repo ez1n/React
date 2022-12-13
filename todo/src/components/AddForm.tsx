@@ -37,7 +37,8 @@ export default function AddForm(props: propsType) {
     <footer className={styles.footer} style={{backgroundColor: darkMode ? theme.dark.header : theme.light.header}}>
       <form className={styles.form} onSubmit={submitInput}>
         <input className={styles.input} type="text" placeholder='Add To Do' value={input} onChange={changeValue}/>
-        <button className={styles.button} type="submit" style={{backgroundColor: theme.main, color: theme.button}}>Add
+        <button className={styles.button} type="submit" style={{backgroundColor: theme.main, color: theme.button}}>
+          Add
         </button>
       </form>
     </footer>
