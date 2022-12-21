@@ -1,10 +1,9 @@
 import React, {useContext} from 'react';
 import styles from '../style/Header.module.css';
 import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
-import {ModeType} from "../type/ToDoType";
-import {DarkModeContext} from "../context/DarkModContext";
-import {theme} from "../common/theme";
-import {ModeContext} from "../context/ModeContext";
+import {ModeType} from '../type/ToDoType';
+import {DarkModeContext} from '../context/DarkModContext';
+import {ModeContext} from '../context/ModeContext';
 
 export default function Header() {
   const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
@@ -19,12 +18,14 @@ export default function Header() {
   const changeDarkMode = () => {
     if (toggleDarkMode) {
       toggleDarkMode();
+      const root = document.querySelector('#root');
+      darkMode ? root?.classList.add('dark') : root?.classList.remove('dark');
     }
   }
 
   return (
-    <nav className={styles.navbar} style={{backgroundColor: darkMode ? theme.dark.header : theme.light.header}}>
-      <button className={styles.icon} onClick={changeDarkMode} style={{color: theme.main}}>
+    <nav className={styles.navbar}>
+      <button className={styles.icon} onClick={changeDarkMode}>
         {darkMode ? <BsFillSunFill/> : <BsFillMoonFill/>}
       </button>
 
@@ -32,28 +33,21 @@ export default function Header() {
         <button
           className={styles.button}
           onClick={() => changeMode('All')}
-          style={{
-            color: theme.main,
-            textDecoration: mode === 'All' ? 'underline' : 'unset'
-          }}>
+          style={{textDecoration: mode === 'All' ? 'underline' : 'unset'}}>
           All
         </button>
+
         <button
           className={styles.button}
           onClick={() => changeMode('Active')}
-          style={{
-            color: theme.main,
-            textDecoration: mode === 'Active' ? 'underline' : 'unset'
-          }}>
+          style={{textDecoration: mode === 'Active' ? 'underline' : 'unset'}}>
           Active
         </button>
+
         <button
           className={styles.button}
           onClick={() => changeMode('Completed')}
-          style={{
-            color: theme.main,
-            textDecoration: mode === 'Completed' ? 'underline' : 'unset'
-          }}>
+          style={{textDecoration: mode === 'Completed' ? 'underline' : 'unset'}}>
           Completed
         </button>
       </span>

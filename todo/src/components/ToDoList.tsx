@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import styles from '../style/ToDoList.module.css';
 import { StatusType, ToDoType } from "../type/ToDoType";
 import ToDoListItem from "./ToDoListItem";
-import { DarkModeContext } from "../context/DarkModContext";
-import { theme } from "../common/theme";
 import { ModeContext } from "../context/ModeContext";
 
 interface propsType {
@@ -13,11 +11,10 @@ interface propsType {
 }
 
 export default function ToDoList(props: propsType) {
-  const { darkMode, } = useContext(DarkModeContext);
   const { mode, } = useContext(ModeContext);
 
   return (
-    <main className={styles.main} style={{ backgroundColor: darkMode ? theme.dark.background : theme.light.background }}>
+    <main className={styles.main}>
       {props.list.map((item, index) => {
         switch (mode) {
           case "All":

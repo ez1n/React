@@ -2,6 +2,7 @@
   padding: 1em;
   height: 20rem;
   overflow: auto;
+  background-color: var(--color-bg);
 }
 
 .list {
@@ -19,6 +20,7 @@
 }
 
 .input {
+  color: var(--color-font);
   cursor: pointer;
 }
 
@@ -34,4 +36,5 @@
   border: none;
   cursor: pointer;
   font-size: 1em;
+  color: var(--color-font);
 }

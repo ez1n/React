@@ -1,3 +1,17 @@
+:root {
+  --color-main: #ff8930;
+  --color-button: #ededed;
+  --color-header: #ebebeb;
+  --color-bg: #f4f4f4;
+  --color-font: #0d0e4f;
+}
+
+.dark {
+  --color-header: #080a4a;
+  --color-bg: rgba(5,5,85,0.88);
+  --color-font: #e0e0e0;
+}
+
 body {
   margin: 0;
   height: 100vh;

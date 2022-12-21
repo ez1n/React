@@ -1,9 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styles from '../style/ToDoList.module.css';
 import {StatusType, ToDoType} from "../type/ToDoType";
 import {BsFillTrashFill} from 'react-icons/bs';
-import {DarkModeContext} from "../context/DarkModContext";
-import {theme} from "../common/theme";
 
 interface propsType {
   item: ToDoType,
@@ -13,7 +11,6 @@ interface propsType {
 }
 
 export default function ToDoListItem(props: propsType) {
-  const {darkMode,} = useContext(DarkModeContext);
 
   const deleteToDo = () => {
     props.deleteToDo(props.item.id, props.index);
@@ -46,14 +43,12 @@ export default function ToDoListItem(props: propsType) {
         <label
           className={`${styles.input} ${props.item.status === 'Completed' && styles.completed}`}
           htmlFor={props.item.id.toString()}
-          style={{color: props.item.status === 'Completed' ? 'gray' : darkMode ? theme.dark.font : theme.light.font}}
         >
           {props.item.name}
         </label>
       </div>
 
-      <button className={styles.deleteButton} onClick={deleteToDo}
-              style={{color: darkMode ? theme.dark.font : theme.light.font}}>
+      <button className={styles.deleteButton} onClick={deleteToDo}>
         <BsFillTrashFill/>
       </button>
     </li>
