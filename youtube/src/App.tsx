@@ -1,13 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import Root from "./pages/Root";
 
-function App() {
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root/>,
+    children: [
+      {index: true, element: <MainPage/>},
+      // {path: "/search", element: <Search/>}
+    ]
+  }
+]);
+
+export default function App() {
   return (
-    <div className="App">
-      <h1>Youtube Clone</h1>
-    </div>
+    <RouterProvider router={router}/>
   );
 }
-
-export default App;
