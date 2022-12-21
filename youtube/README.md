@@ -11,7 +11,6 @@ localhost:3000 에서 실행됩니다.
 - Typescript
 - React
 - tailwind css
-- Recoil
 - react router
 
 ## Functions
