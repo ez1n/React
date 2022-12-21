@@ -4,10 +4,10 @@ import Header from "../components/Header";
 
 export default function Root() {
   return (
-    <div>
-      <Header/>
-      <Outlet/>
-    </div>
+      <div className='max-w-7xl m-auto'>
+        <Header/>
+        <Outlet/>
+      </div>
   );
 }
 
