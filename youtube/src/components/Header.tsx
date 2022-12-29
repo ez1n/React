@@ -19,7 +19,7 @@ export default function Header() {
   const searchValue = (e: FormEvent<HTMLFormElement>) => {
     // TODO: 검색 기능 추가하기
     e.preventDefault();
-    navigate(`/search?query=${search}`);
+    navigate(`/search?q=${search}`);
     setSearch('');
   };
 

@@ -12,6 +12,7 @@ localhost:3000 에서 실행됩니다.
 - React
 - tailwind css
 - react router
+- Recoil
 
 ## Functions
 
