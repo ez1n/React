@@ -23,9 +23,9 @@ export default function Video(props: PropsType) {
   return (
     <li onClick={clickVideo} className={`${props.type && 'flex'} w-full cursor-pointer transition duration-700 hover:scale-102`}>
       <img src={props.thumbnails} alt={props.title} className={`${props.type ? 'w-0.4': 'w-full'} h-40`}/>
-      <div>
-        <p className='text-zinc-200 text-lg font-bold whitespace-nowrap overflow-hidden text-ellipsis'>{props.title}</p>
-        <p className='text-gray-400 text-sm'>{props.channelTitle}</p>
+      <div className='m-2'>
+        <p className={`text-zinc-200 text-lg font-bold overflow-hidden text-ellipsis ${props.type ? 'leading-6 h-12' : 'whitespace-nowrap'}`}>{props.title}</p>
+        <p className='text-gray-400 text-sm overflow-hidden text-ellipsis whitespace-nowrap'>{props.channelTitle}</p>
         <p className='text-gray-400 text-xs'>{props.publishedAt}</p>
       </div>
     </li>

@@ -1,42 +1,9 @@
-import React, {useEffect} from 'react';
-import {useRecoilState, useSetRecoilState} from "recoil";
-import {currentVideoState, videoState, VideosType} from "../recoil/video";
-import {useLocation} from "react-router-dom";
-import {youtube} from "../service/youtube";
+import React from 'react';
+import {useRecoilValue} from "recoil";
+import {currentVideoState} from "../recoil/video";
 
 export default function VideoDetail() {
-  const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoState);
-  const setVideos = useSetRecoilState(videoState);
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const videoId = params.get('v');
-
-  useEffect(() => {
-    youtube.get(`/videos?id=${videoId}`)
-      .then(res => {
-        const v = res.data.items[0];
-        setCurrentVideo({
-          id: v.id,
-          url: `http://www.youtube.com/embed/${v.id}`,
-          title: v.snippet.title,
-          channelTitle: v.snippet.channelTitle,
-          description: v.snippet.description
-        })
-      })
-      .catch(console.log)
-
-    youtube.get(`/search?type=video&relatedToVideoId=${videoId}&maxResults=25`)
-      .then(res => {
-        const newVideos: VideosType = [];
-        res.data.items.map((item: any) => newVideos.push({
-          ...item.snippet,
-          id: item.id.videoId,
-          thumbnails: item.snippet.thumbnails.default.url
-        }));
-        setVideos(newVideos);
-      })
-      .catch(console.log)
-    }, [videoId]);
+  const currentVideo = useRecoilValue(currentVideoState);
 
   return (
     <>
